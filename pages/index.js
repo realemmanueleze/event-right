@@ -1,9 +1,15 @@
 import React from 'react'
+import {getFeaturedEvents} from '../data'
+import EventsList from '../components/events/EventsList'
 
 function FeaturedEvents() {
-  return (
-    <div>FeaturedEvents</div>
-  )
-}
+  const events = getFeaturedEvents();
 
-export default FeaturedEvents
+  return (
+    <div>
+      <EventsList events={events}/> 
+    </div>
+  )
+};
+
+export default FeaturedEvents;
