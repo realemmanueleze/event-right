@@ -1,9 +1,9 @@
  import React from 'react'
  
- function SpecificEvent() {
+ function EventDetails() {
    return (
      <div>SpecificEvent</div>
    )
  }
  
- export default SpecificEvent
+ export default EventDetails
