@@ -1,10 +1,13 @@
-import React from 'react'
+import React from "react";
+import EventItem from "./EventItem";
 
-function EventsList() {
-    const {events} = props
-    return (
-      <div>{events.map((event)=> <EventItem event={event}/>)}</div>
-    )
-  }
-
-export default EventsList
+function EventsList({ events }) {
+  return (
+    <ul>
+      {events.map((event) => (
+        <EventItem {...event} key={events.id}/>
+      ))}
+    </ul>
+  );
+}
+export default EventsList;
