@@ -1,13 +1,11 @@
 import React from "react";
-import { getFeaturedEvents } from "../data";
-import EventsList from "../components/events/EventsList";
+import Button from "../components/ui/Button";
 
 function FeaturedEvents() {
-  const events = getFeaturedEvents();
 
   return (
-    <div>
-      <EventsList events={events} />
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "100vh"}}>
+      <Button link={'/events'}>Explore Events</Button>
     </div>
   );
 }
