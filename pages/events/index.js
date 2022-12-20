@@ -1,19 +1,10 @@
 import React from "react";
-import Button from "../../components/ui/Button";
+import EventsList from "../../components/events/EventsList";
+import { getFeaturedEvent } from "../../data";
 
 function AllEvents() {
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "100vh",
-      }}
-    >
-      <Button link={"/"}>Explore Events</Button>
-    </div>
-  );
+  const events = getFeaturedEvent();
+
+  return <EventsList events={events} />;
 }
 export default AllEvents;
