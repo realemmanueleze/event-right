@@ -4,7 +4,7 @@ import { getFilteredEvents } from "../../data";
 import EventsList from "../../components/events/event-list";
 import ResultsTitle from "../../components/events/results-title";
 import ErrorAlert from "../../components/ui/error-alert";
-import Button from "../../components/ui/Button";
+import Button from "../../components/ui/button";
 
 function FilteredEvents() {
   const router = useRouter();
