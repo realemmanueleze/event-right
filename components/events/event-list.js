@@ -1,6 +1,6 @@
 import React from "react";
-import EventItem from "./EventItem";
-import classes from "./EventList.module.css"
+import EventItem from "./event-items";
+import classes from "./event-list.module.css"
 
 function EventsList({ events }) {
   return (

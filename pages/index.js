@@ -1,6 +1,6 @@
 import React from "react";
 import { getFeaturedEvents } from "../data";
-import EventsList from "../components/events/EventsList";
+import EventsList from "../components/events/event-list";
 
 function FeaturedEvents() {
   const events = getFeaturedEvents();

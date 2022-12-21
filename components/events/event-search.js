@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import Button from "../ui/Button";
-import classes from "./EventSearch.module.css";
+import classes from "./event-search.module.css";
 
 function EventSearch({ onSubmit }) {
   const yearRef = useRef();

@@ -1,7 +1,7 @@
 import React from "react";
 import {useRouter} from 'next/router'
-import EventSearch from "../../components/events/EventSearch";
-import EventsList from "../../components/events/EventsList";
+import EventSearch from "../../components/events/event-search";
+import EventsList from "../../components/events/event-list";
 import { getFeaturedEvent } from "../../data";
 
 function AllEvents() {
