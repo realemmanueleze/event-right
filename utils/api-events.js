@@ -1,13 +1,17 @@
 export async function getAllEvents() {
-  const eventsJson = await fetch(
-    "https://test-35fa6-default-rtdb.firebaseio.com/events.json"
-  );
-  const eventsData = await eventsJson.json();
-  const sortedEvent = [];
-  for (const key in eventsData) {
-    sortedEvent.push({ ...eventsData[key] });
+  try {
+    const eventsJson = await fetch(
+      "https://test-35fa6-default-rtdb.firebaseio.com/events.json"
+    );
+    const eventsData = await eventsJson.json();
+    const sortedEvent = [];
+    for (const key in eventsData) {
+      sortedEvent.push({ ...eventsData[key] });
+    }
+    return sortedEvent;
+  } catch (error) {
+    console.log(error);
   }
-  return sortedEvent;
 }
 
 export async function getFeaturedEvents() {

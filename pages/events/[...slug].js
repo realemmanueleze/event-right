@@ -1,16 +1,16 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { getFilteredEvents } from "../../data";
 import EventsList from "../../components/events/event-list";
 import ResultsTitle from "../../components/events/results-title";
 import ErrorAlert from "../../components/ui/error-alert";
 import Button from "../../components/ui/button";
+import { getFilteredEvents } from "../../utils/api-events";
+// import { getFilteredEvents } from "../../data";
 
 function FilteredEvents() {
   const router = useRouter();
 
   const eventQuery = router.query.slug;
-  console.log(eventQuery);
 
   if (!eventQuery) {
     return <div className="center">Loading...</div>;

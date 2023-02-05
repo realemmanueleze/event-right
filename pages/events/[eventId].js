@@ -2,15 +2,11 @@ import React from "react";
 import EventLogistics from "../../components/event-detail/event-logistics";
 import EventSummary from "../../components/event-detail/event-summary";
 import EventContent from "../../components/event-detail/event-content";
-import { useRouter } from "next/router";
-import { getEventById } from "../../data";
+import { getAllEvents, getEventById } from "../../utils/api-events";
 import ErrorAlert from "../../components/ui/error-alert";
 
-function EventDetails() {
-  const router = useRouter();
-  const eventId = router.query.eventId;
-  console.log(eventId);
-  const event = getEventById(eventId);
+function EventDetails(props) {
+  const { event } = props;
 
   if (!event) {
     return (
@@ -39,6 +35,27 @@ function EventDetails() {
       </EventContent>
     </>
   );
+}
+
+export async function getStaticPaths() {
+  const events = await getAllEvents();
+  const eventIds = events.map((event) => ({params: {eventId: event.id}}));
+  return {
+    paths: eventIds,
+    fallback: true,
+  };
+}
+
+export async function getStaticProps(context) {
+  const { params } = context;
+  const {eventId} = params;
+  const event = await getEventById(eventId);
+
+  return {
+    props: {
+      event,
+    },
+  };
 }
 
 export default EventDetails;
