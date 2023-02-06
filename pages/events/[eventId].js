@@ -2,7 +2,7 @@ import React from "react";
 import EventLogistics from "../../components/event-detail/event-logistics";
 import EventSummary from "../../components/event-detail/event-summary";
 import EventContent from "../../components/event-detail/event-content";
-import { getAllEvents, getEventById } from "../../utils/api-events";
+import { getFeaturedEvents, getEventById } from "../../utils/api-events";
 import ErrorAlert from "../../components/ui/error-alert";
 
 function EventDetails(props) {
@@ -38,7 +38,7 @@ function EventDetails(props) {
 }
 
 export async function getStaticPaths() {
-  const events = await getAllEvents();
+  const events = await getFeaturedEvents();
   const eventIds = events.map((event) => ({params: {eventId: event.id}}));
   return {
     paths: eventIds,
@@ -55,6 +55,7 @@ export async function getStaticProps(context) {
     props: {
       event,
     },
+    revalidate: 30
   };
 }
 
