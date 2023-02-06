@@ -16,9 +16,6 @@ function FilteredEvents() {
     .then((jsonRes) => jsonRes.json())
     .then((res) => setData(res));
 
-  if (!eventQuery) {
-    return <div className="center">Loading...</div>;
-  }
 
   const year = +eventQuery[0];
   const month = +eventQuery[1];
@@ -61,7 +58,11 @@ function FilteredEvents() {
     );
   }
 
-  if (!filteredEvents || filteredEvents.length < 0) {
+  if (!filteredEvents || !eventQuery) {
+    return <div className="center">Loading...</div>;
+  }
+
+  if (filteredEvents.length < 0) {
     return (
       <>
         <ErrorAlert>
