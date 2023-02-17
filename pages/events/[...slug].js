@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import EventsList from "../../components/events/event-list";
 import ResultsTitle from "../../components/events/results-title";
@@ -10,15 +11,23 @@ function FilteredEvents() {
   const [data, setData] = useState();
   const router = useRouter();
 
+  useEffect(() => {
+    fetch("https://test-35fa6-default-rtdb.firebaseio.com/events.json")
+      .then((jsonRes) => jsonRes.json())
+      .then((res) => setData(res));
+  }, []);
+
   const eventQuery = router.query.slug;
-
-  fetch("https://test-35fa6-default-rtdb.firebaseio.com/events.json")
-    .then((jsonRes) => jsonRes.json())
-    .then((res) => setData(res));
-
-
+  console.log(eventQuery)
   const year = +eventQuery[0];
   const month = +eventQuery[1];
+
+  const filteredEventHead = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta name="description" content={`All events for ${year}/${month}`} />
+    </Head>
+  );
 
   useEffect(() => {
     // Convert data to an array of objects
@@ -38,6 +47,15 @@ function FilteredEvents() {
     }
   }, [data]);
 
+  if (!filteredEvents || !eventQuery) {
+    return (
+      <div className="center">
+        {filteredEventHead}
+        Loading...
+      </div>
+    );
+  }
+
   if (
     isNaN(year) ||
     isNaN(month) ||
@@ -48,6 +66,7 @@ function FilteredEvents() {
   ) {
     return (
       <>
+        {filteredEventHead}
         <ErrorAlert>
           <p>Invalid filters. Please review your values and try again.</p>
         </ErrorAlert>
@@ -56,10 +75,6 @@ function FilteredEvents() {
         </div>
       </>
     );
-  }
-
-  if (!filteredEvents || !eventQuery) {
-    return <div className="center">Loading...</div>;
   }
 
   if (filteredEvents.length < 0) {
@@ -79,6 +94,7 @@ function FilteredEvents() {
 
   return (
     <>
+      {filteredEventHead}
       <ResultsTitle date={date} />
       <EventsList events={filteredEvents} />
     </>

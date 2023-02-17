@@ -4,6 +4,7 @@ import EventSummary from "../../components/event-detail/event-summary";
 import EventContent from "../../components/event-detail/event-content";
 import { getFeaturedEvents, getEventById } from "../../utils/api-events";
 import ErrorAlert from "../../components/ui/error-alert";
+import Head from "next/head";
 
 function EventDetails(props) {
   const { event } = props;
@@ -23,6 +24,10 @@ function EventDetails(props) {
 
   return (
     <>
+      <Head>
+        <title>{event.title}</title>
+        <meta name="description" content={event.description} />
+      </Head>
       <EventSummary title={event.title} />
       <EventLogistics
         date={event.date}
@@ -39,7 +44,7 @@ function EventDetails(props) {
 
 export async function getStaticPaths() {
   const events = await getFeaturedEvents();
-  const eventIds = events.map((event) => ({params: {eventId: event.id}}));
+  const eventIds = events.map((event) => ({ params: { eventId: event.id } }));
   return {
     paths: eventIds,
     fallback: true,
@@ -48,14 +53,14 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const { params } = context;
-  const {eventId} = params;
+  const { eventId } = params;
   const event = await getEventById(eventId);
 
   return {
     props: {
       event,
     },
-    revalidate: 30
+    revalidate: 30,
   };
 }
 
