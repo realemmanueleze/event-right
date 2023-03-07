@@ -101,26 +101,3 @@ function FilteredEvents() {
 }
 
 export default FilteredEvents;
-
-// export async function getServerSideProps(context) {
-//   const { params } = context;
-//   const year = +params.slug[0];
-//   const month = +params.slug[1];
-
-//   if (
-//     isNaN(year) ||
-//     isNaN(month) ||
-//     month > 12 ||
-//     month < 1 ||
-//     year > 2030 ||
-//     year < 2021
-//   ) {
-//     return { props: { isError: true } };
-//   }
-
-//   const events = await getFilteredEvents({ year, month });
-
-//   return {
-//     props: { events, eventDate: { year: year, month: month } },
-//   };
-// }
