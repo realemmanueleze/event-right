@@ -1,7 +1,7 @@
 export async function getAllEvents() {
   try {
     const eventsJson = await fetch(
-      "https://test-35fa6-default-rtdb.firebaseio.com/events.json"
+      "https://test2-d68d8-default-rtdb.firebaseio.com/events.json"
     );
     const eventsData = await eventsJson.json();
     const sortedEvent = [];
@@ -18,6 +18,7 @@ export async function getFeaturedEvents() {
   const events = await getAllEvents();
   return events.filter((event) => event.isFeatured);
 }
+
 export async function getFilteredEvents(dateFilter) {
   const { year, month } = dateFilter;
   const events = await getAllEvents();

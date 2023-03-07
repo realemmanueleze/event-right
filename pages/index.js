@@ -5,6 +5,7 @@ import { getFeaturedEvents } from "../utils/api-events";
 
 function FeaturedEvents(props) {
   const { events } = props;
+  
   return (
     <div>
       <Head>

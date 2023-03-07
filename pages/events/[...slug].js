@@ -18,7 +18,6 @@ function FilteredEvents() {
   }, []);
 
   const eventQuery = router.query.slug;
-  console.log(eventQuery)
   const year = +eventQuery[0];
   const month = +eventQuery[1];
 

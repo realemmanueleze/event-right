@@ -13,7 +13,7 @@ function EventDetails(props) {
     return (
       <>
         <ErrorAlert>
-          <p>No event with the id of {eventId} found</p>
+          <p>No event with the id of {event.id} found</p>
         </ErrorAlert>
         <div className="center">
           <Button link="/events">Explore All Events</Button>
